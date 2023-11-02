@@ -12,7 +12,7 @@ using SimasTurbo.Models;
 
 namespace SimasTurbo.Controllers
 {
-    //[Authorize(Roles = "Admin,Gerente")]
+    [Authorize(Roles = "Admin,Gerente")]
     public class RelatMovsController : Controller
     {
         private readonly SimasContext _context;
