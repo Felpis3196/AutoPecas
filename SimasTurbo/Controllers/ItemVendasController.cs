@@ -12,7 +12,7 @@ using SimasTurbo.Models;
 
 namespace SimasTurbo.Controllers
 {
-    //[Authorize(Roles = "Admin,Operador")]
+    [Authorize(Roles = "Admin,Operador")]
     public class ItemVendasController : Controller
     {
         private readonly SimasContext _context;
