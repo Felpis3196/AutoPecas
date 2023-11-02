@@ -1,0 +1,49 @@
+﻿@model SimasTurbo.Models.ItemVenda
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ItemVenda</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemVendaId" />
+            <div class="form-group">
+                <label asp-for="ProdutoId" class="control-label"></label>
+                <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId"></select>
+                <span asp-validation-for="ProdutoId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="PrecoUnit" class="control-label"></label>
+                <input asp-for="PrecoUnit" class="form-control" />
+                <span asp-validation-for="PrecoUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="CadVendasId" class="control-label"></label>
+                <select asp-for="CadVendasId" class="form-control" asp-items="ViewBag.CadVendasId"></select>
+                <span asp-validation-for="CadVendasId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn mt-2" style="background-color:#9CC1DD; color:white" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn mt-2" style="background-color:#FB5546; color:white">Voltar à Lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SimasTurbo.Models.RelatProd>
+
+@{
+    ViewData["Title"] = "Relatório de Produtos";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="w-50">
+    <form method="post" asp-action="Index" asp-controller="RelatProd" role="search" class="d-flex">
+        <input name="inBusca" class="form-control me-2" type="search" aria-label="Search">
+
+        <select asp-action="Index" class="btn btn-outline-primary me-2" name="inCategoria">
+            <option value="">Todas as categorias</option>
+            @foreach (var item in ViewBag.produtoCategoria)
+            {
+                <option value="@item.CategoriaId">@item.Nome</option>
+            }
+        </select>
+
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Nome
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th>
+                Preço Unitário
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoUnit)
+            </td>
+        </tr>
+}
+    </tbody>
+    <tfoot>
+        <tr style="font-size:20px">
+            <td colspan="2">Total:</td>
+            <td>
+                @Model.Sum(item => item.Quantidade)
+            </td>
+            <td style="color:green">
+                @Model.Sum(item => item.PrecoUnit).ToString("C")
+            </td>
+        </tr>
+    </tfoot>
+</table>

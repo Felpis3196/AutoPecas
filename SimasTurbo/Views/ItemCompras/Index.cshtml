@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SimasTurbo.Models.ItemCompra>
+
+@{
+    ViewData["Title"] = "Item Compra";
+    var id = ViewData["ItemCompraId"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-route-id="@id" asp-action="Create" class="btn mt-3" style="background-color:#FB5546; color:white">Criar um Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CadCompras)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CadCompras.CadComprasId)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.ItemCompraId" class="btn" style="background-color:#5E6BC2; color:white">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.ItemCompraId" class="btn" style="background-color:#9CC1DD; color:white">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.ItemCompraId" class="btn" style="background-color:#FB5546; color:white">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SimasTurbo.Models.RelatMov>
+
+@{
+    ViewData["Title"] = "Relatório de Movimentação";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="w-100 table-responsive">
+    <form method="post" asp-action="Index" asp-controller="RelatMovs" role="search" class="d-flex">
+
+        <input name="inBusca" class="form-control me-2 w-50" type="search" aria-label="Search">
+
+        <select asp-action="Index" class="btn btn-outline-primary me-2" name="inMovimento">           
+            <option value="">Tipo de Movimentação</option>
+            <option value="Entrada">Entrada</option>
+            <option value="Saida">Saida</option>
+        </select>
+
+        <label for="data-inicial">Data Inicial:</label>
+        <input type="date" id="data-inicial" name="dataInicial">
+
+        <label for="data-final">Data Final:</label>
+        <input type="date" id="data-final" name="dataFinal">
+
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nota Fiscal
+                </th>
+                <th>
+                    Data E Hora
+                </th>
+                <th>
+                    Tipo De Movimentacao
+                </th>
+                <th>
+                    Produto
+                </th>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Preço Unitário
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotaFiscal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataEHora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoMovimentacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecoUnitario)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr style="font-size:20px">
+                <td colspan="4">Total:</td>
+                <td>
+                    @Model.Sum(item => item.Quantidade)
+                </td>
+                <td style="color:green">
+                    @Model.Sum(item => item.PrecoUnitario).ToString("C")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
