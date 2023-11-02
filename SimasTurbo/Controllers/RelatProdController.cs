@@ -10,6 +10,7 @@ using SimasTurbo.Models;
 
 namespace SimasTurbo.Controllers
 {
+    [Authorize(Roles = "Admin,Gerente")]
     public class RelatProdController : Controller
     {
         private readonly SimasContext _context;
