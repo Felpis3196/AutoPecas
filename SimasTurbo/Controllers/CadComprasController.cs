@@ -11,7 +11,7 @@ using SimasTurbo.Models;
 
 namespace SimasTurbo.Controllers
 {
-    //[Authorize(Roles = "Admin,Operador")]
+    [Authorize(Roles = "Admin,Operador")]
     public class CadComprasController : Controller
     {
         private readonly SimasContext _context;
